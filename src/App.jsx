@@ -10,7 +10,7 @@ const App = () => {
 
   useEffect(() => {
     const connectWebSocket = () => {
-      const socket = new WebSocket("ws://localhost:8000/ws");
+      const socket = new WebSocket("ws://https://robot-fleet-monitoring-backend.onrender.com/ws");
 
       socket.onopen = () => {
         console.log("WebSocket connection established.");
