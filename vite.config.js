@@ -6,7 +6,19 @@ export default defineConfig({
   server: {
     host: "0.0.0.0", // Bind to all network interfaces
     port: 3000,      // Use port 3000 for local development
-    strictPort: true // Prevent switching ports if 3000 is in use
+    strictPort: true, // Prevent switching ports if 3000 is in use
+    proxy: {
+      // Proxy API requests to your backend hosted on Render
+      "/api": {
+        target: "https://robot-fleet-monitoring-backend.onerender.com", // Replace with your Render backend URL
+        changeOrigin: true,
+        secure: true,
+      },
+      "/ws": {
+        target: "wss://robot-fleet-monitoring-backend.onerender.com", // Replace with WebSocket URL
+        ws: true, // Proxy WebSocket requests
+      },
+    },
   },
   build: {
     outDir: "dist",     // Ensure the build output is in the "dist" directory
@@ -14,12 +26,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      // Add any necessary aliases for simplifying imports
-      "@": "/src",
+      "@": "/src", // Simplify imports using "@" for the "src" directory
     },
   },
   define: {
-    // Define global constants if needed
-    "process.env": {},
+    "process.env": {}, // Define global constants if needed
   },
 });
