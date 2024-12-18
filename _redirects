@@ -1,0 +1,2 @@
+/api/* https://robotfleet-monitoring-backend.onrender.com/api/:splat 200
+/ws/* https://robotfleet-monitoring-backend.onrender.com/ws/:splat 200
